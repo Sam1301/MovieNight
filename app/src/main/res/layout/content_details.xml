@@ -24,13 +24,13 @@
             android:layout_marginBottom="8dp"
             android:background="@color/colorAccent"
             android:gravity="center_vertical"
-            android:paddingTop="32dp"
-            android:paddingBottom="32dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="Deadpool"
             android:textColor="#ffffff"
-            android:textSize="34sp" />
+            android:textSize="32sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,7 +59,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="2016" />
+                    android:text="2016"
+                    android:textSize="16sp"/>
 
                 <RatingBar
                     android:id="@+id/rating_bar"
@@ -76,14 +77,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="8.1/10" />
+                    android:text="8.1/10"
+                    android:textSize="16sp"/>
             </LinearLayout>
         </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OVERVIEW"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
 
         <TextView
             android:id="@+id/overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="OVERVIEW" />
+            android:layout_marginBottom="8dp"
+            android:textColor="#000000"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:onClick="launchYoutube">
+            <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_play_icon"
+                android:layout_marginRight="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Watch Trailer"
+                android:layout_gravity="center_vertical"
+                android:textSize="21sp"/>
     </LinearLayout>
+    </LinearLayout>
+
 </ScrollView>

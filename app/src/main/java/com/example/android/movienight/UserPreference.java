@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,7 @@ public class UserPreference extends AppCompatActivity implements AdapterView.OnI
         String requestUrl = builder.build().toString();
         Log.e("in user pref : ", requestUrl);
         intent.putExtra(mRequestUrlKey, requestUrl);
+        Toast.makeText(this, "Please wait, If nothing shows up, check your internet connection or try relevant genres", Toast.LENGTH_SHORT).show();
         startActivity(intent);
 
 
