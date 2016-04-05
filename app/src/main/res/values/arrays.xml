@@ -13,23 +13,23 @@
     </string-array>
 
     <string-array name="actors_array">
-        <item>Travis Fimmel</item>
+        <item>Robert Downey Jr.</item>
         <item>Chris Evans</item>
         <item>Ben Affleck</item>
         <item>Matt Damon</item>
         <item>Cody Walker</item>
         <item>Hugh Jackman</item>
-        <item>Keanu Reeves</item>
-        <item>Vin Diesel</item>
+        <item>Brad Pitt</item>
+        <item>George Clooney</item>
     </string-array>
     <string-array name="actresses_array">
-        <item>Monica Bellucci</item>
         <item>Scarlett Johansson</item>
+        <item>Monica Bellucci</item>
         <item>Jennifer Lawrence</item>
         <item>Alexandra Daddario</item>
-        <item>Milla Jovovich</item>
-        <item>Carla Gugino</item>
-        <item>Natalie Portman</item>
+        <item>Emily Blunt</item>
         <item>Shu Qi</item>
+        <item>Natalie Portman</item>
+        <item>Keanu Reeves</item>
     </string-array>
 </resources>

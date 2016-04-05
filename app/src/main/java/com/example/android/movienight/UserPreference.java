@@ -6,15 +6,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-public class UserPreference extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
-    private String[] mQueryGenreValue = new String[9];
-    private String[] mQueryCastValue = new String[2];
+public class UserPreference extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+
+    private List<String> mQueryGenreValue = new ArrayList<String>();
+    private List<String> mQueryCastValue = new ArrayList<String>();
     public String mRequestUrlKey = "request url";
-private int x;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +26,8 @@ private int x;
 
 
         //for actors drop down box
-        Spinner spinner = (Spinner) findViewById(R.id.actor_Spinner);
-
+        Spinner spinnerActor = (Spinner) findViewById(R.id.actor_Spinner);
+        spinnerActor.setOnItemSelectedListener(this);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.actors_array, android.R.layout.simple_spinner_item);
@@ -33,14 +36,15 @@ private int x;
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        spinnerActor.setAdapter(adapter);
 
         //for actresses drop down box
-        spinner = (Spinner) findViewById(R.id.actress_Spinner);
+        Spinner spinnerActress = (Spinner) findViewById(R.id.actress_Spinner);
+        spinnerActress.setOnItemSelectedListener(this);
         adapter = ArrayAdapter.createFromResource(this,
                 R.array.actresses_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinnerActress.setAdapter(adapter);
 
 
 
@@ -69,38 +73,38 @@ private int x;
     public void checkboxes(View view) {
         switch (view.getId()) {
             case R.id.action:
-                mQueryGenreValue[x++] += "28";
+                mQueryGenreValue.add("28");
                 break;
             case R.id.adventure:
-                mQueryGenreValue[x++] += "12";
+                mQueryGenreValue.add("12");
 
                 break;
             case R.id.thriller:
-                mQueryGenreValue[x++] += "53";
+                mQueryGenreValue.add("53");
 
                 break;
             case R.id.comedy:
-                mQueryGenreValue[x++] += "35";
+                mQueryGenreValue.add("35");
 
                 break;
             case R.id.romance:
-                mQueryGenreValue[x++] += "10749";
+                mQueryGenreValue.add("10749");
 
                 break;
             case R.id.animation:
-                mQueryGenreValue[x++] += "16";
+                mQueryGenreValue.add("16");
 
                 break;
             case R.id.family:
-                mQueryGenreValue[x++] += "10715";
+                mQueryGenreValue.add("10715");
 
                 break;
             case R.id.sci_fi:
-                mQueryGenreValue[x++] += "878";
+                mQueryGenreValue.add("878");
 
                 break;
             case R.id.mystery:
-                mQueryGenreValue[x++] += "9648";
+                mQueryGenreValue.add("9648");
 
                 break;
             default:
@@ -108,5 +112,87 @@ private int x;
                 Log.e("in User preference", "Incorrect checkbox chosen");
                 break;
         }
+    }
+
+    private void spinnerActressHelper(int optionSelected){
+        switch (optionSelected){
+            case 0:
+                mQueryCastValue.add("1245");
+                break;
+            case 1:
+                mQueryCastValue.add("28782");
+                break;
+            case 2:
+                mQueryCastValue.add("72129");
+                break;
+            case 3:
+                mQueryCastValue.add("109513");
+                break;
+            case 4:
+                mQueryCastValue.add("5081");
+                break;
+            case 5:
+                mQueryCastValue.add("21911");
+                break;
+            case 6:
+                mQueryCastValue.add("524");
+                break;
+            case 7:
+                mQueryCastValue.add("6384");
+                break;
+            default:
+                Log.e("Err spinnerActressHelp", "not able to select a case");
+                break;
+        }
+    }
+    private void spinnerActorHelper(int optionSelected){
+        switch (optionSelected){
+            case 0:
+                mQueryCastValue.add("3223");
+                break;
+            case 1:
+                mQueryCastValue.add("16828");
+                break;
+            case 2:
+                mQueryCastValue.add("880");
+                break;
+            case 3:
+                mQueryCastValue.add("1892");
+                break;
+            case 4:
+                mQueryCastValue.add("1480862");
+                break;
+            case 5:
+                mQueryCastValue.add("6968");
+                break;
+            case 6:
+                mQueryCastValue.add("287");
+                break;
+            case 7:
+                mQueryCastValue.add("1461");
+                break;
+            default:
+                Log.e("Err spinnerActorHelp", "not able to select a case");
+                break;
+        }
+    }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Spinner spinner = (Spinner) parent;
+        if(spinner.getId() == R.id.actress_Spinner)
+        {
+            spinnerActressHelper(position);
+            Log.e("onItemSelected", "actress_spinner selected");
+        }
+        else if(spinner.getId() == R.id.actor_Spinner)
+        {
+            spinnerActorHelper(position);
+            Log.e("onItemSelected", "actor_spinner selected");
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
