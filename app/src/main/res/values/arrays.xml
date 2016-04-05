@@ -5,11 +5,15 @@
     <string-array name="entriesForSortByPreference" >
         <item>Most Popular</item>
         <item>Top Rated</item>
+        <item>Revenue</item>
+        <item>Release Date</item>
     </string-array>
 
     <string-array name="entryValuesForSortByPreference" >
         <item>popularity.desc</item>
         <item>vote_average.desc</item>
+        <item>revenue.desc</item>
+        <item>release_date.desc</item>
     </string-array>
 
     <string-array name="actors_array">
