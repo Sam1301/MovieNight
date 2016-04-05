@@ -13,23 +13,23 @@
     </string-array>
 
     <string-array name="actors_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+        <item>Travis Fimmel</item>
+        <item>Chris Evans</item>
+        <item>Ben Affleck</item>
+        <item>Matt Damon</item>
+        <item>Cody Walker</item>
+        <item>Hugh Jackman</item>
+        <item>Keanu Reeves</item>
+        <item>Vin Diesel</item>
     </string-array>
     <string-array name="actresses_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+        <item>Monica Bellucci</item>
+        <item>Scarlett Johansson</item>
+        <item>Jennifer Lawrence</item>
+        <item>Alexandra Daddario</item>
+        <item>Milla Jovovich</item>
+        <item>Carla Gugino</item>
+        <item>Natalie Portman</item>
+        <item>Shu Qi</item>
     </string-array>
 </resources>

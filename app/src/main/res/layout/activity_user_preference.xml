@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Genre"
-        android:textSize="20sp"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,18 +24,24 @@
         android:orientation="horizontal">
 
         <CheckBox
+            android:id="@+id/action"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Action" />
+            android:text="Action"
+            android:onClick="checkboxes"/>
 
         <CheckBox
+            android:id="@+id/adventure"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Adventure" />
+            android:text="Adventure"
+            android:onClick="checkboxes"/>
 
         <CheckBox
+            android:onClick="checkboxes"
+            android:id="@+id/animation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -48,18 +54,24 @@
         android:orientation="horizontal">
 
         <CheckBox
+            android:onClick="checkboxes"
+            android:id="@+id/comedy"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Comedy" />
 
         <CheckBox
+            android:onClick="checkboxes"
+            android:id="@+id/family"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Family" />
 
         <CheckBox
+            android:onClick="checkboxes"
+            android:id="@+id/mystery"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -73,76 +85,80 @@
         android:orientation="horizontal">
 
         <CheckBox
+            android:onClick="checkboxes"
+            android:id="@+id/romance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Romance" />
 
         <CheckBox
+            android:onClick="checkboxes"
+            android:id="@+id/thriller"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Thriller" />
 
         <CheckBox
+            android:onClick="checkboxes"
+            android:id="@+id/sci_fi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Sci-Fi" />
     </LinearLayout>
 
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="16dp">
 
-        <LinearLayout
-            android:layout_width="0dp"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="8dp">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Actor"
-    android:textColor="@color/colorAccent"
-    android:layout_gravity="left"
-    android:textSize="21sp"/>
-            <Spinner
-                android:id="@+id/actor_Spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></Spinner>
-        </LinearLayout>
+            android:layout_gravity="left"
+            android:text="Actor"
+            android:textColor="@color/colorAccent"
+            android:textSize="21sp" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Actress"
-                android:textColor="@color/colorAccent"
-                android:textSize="21sp"
-                android:layout_gravity="left"/>
-            <Spinner
-                android:id="@+id/actress_Spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></Spinner>
-        </LinearLayout>
-
+        <Spinner
+            android:id="@+id/actor_Spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="Actress"
+            android:textColor="@color/colorAccent"
+            android:textSize="21sp" />
+
+        <Spinner
+            android:id="@+id/actress_Spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner>
+    </LinearLayout>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FIND MOVIES"
-        android:padding="8dp"
-        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal"
         android:background="@color/colorPrimary"
-        android:layout_gravity="center_horizontal"/>
+        android:padding="8dp"
+        android:text="FIND MOVIES"
+        android:textColor="#ffffff" />
 </LinearLayout>
