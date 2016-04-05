@@ -105,10 +105,12 @@ public class UserPreference extends AppCompatActivity implements AdapterView.OnI
                 break;
             case R.id.mystery:
                 mQueryGenreValue.add("9648");
-
                 break;
+            case R.id.documentary:
+                mQueryGenreValue.add("99");
+                break;
+
             default:
-                finish();
                 Log.e("in User preference", "Incorrect checkbox chosen");
                 break;
         }
@@ -116,29 +118,31 @@ public class UserPreference extends AppCompatActivity implements AdapterView.OnI
 
     private void spinnerActressHelper(int optionSelected){
         switch (optionSelected){
-            case 0:
+            case 1:
                 mQueryCastValue.add("1245");
                 break;
-            case 1:
+            case 2:
                 mQueryCastValue.add("28782");
                 break;
-            case 2:
+            case 3:
                 mQueryCastValue.add("72129");
                 break;
-            case 3:
+            case 4:
                 mQueryCastValue.add("109513");
                 break;
-            case 4:
+            case 5:
                 mQueryCastValue.add("5081");
                 break;
-            case 5:
+            case 6:
                 mQueryCastValue.add("21911");
                 break;
-            case 6:
+            case 7:
                 mQueryCastValue.add("524");
                 break;
-            case 7:
+            case 8:
                 mQueryCastValue.add("6384");
+                break;
+            case 0:
                 break;
             default:
                 Log.e("Err spinnerActressHelp", "not able to select a case");
@@ -147,29 +151,31 @@ public class UserPreference extends AppCompatActivity implements AdapterView.OnI
     }
     private void spinnerActorHelper(int optionSelected){
         switch (optionSelected){
-            case 0:
+            case 1:
                 mQueryCastValue.add("3223");
                 break;
-            case 1:
+            case 2:
                 mQueryCastValue.add("16828");
                 break;
-            case 2:
+            case 3:
                 mQueryCastValue.add("880");
                 break;
-            case 3:
+            case 4:
                 mQueryCastValue.add("1892");
                 break;
-            case 4:
+            case 5:
                 mQueryCastValue.add("1480862");
                 break;
-            case 5:
+            case 6:
                 mQueryCastValue.add("6968");
                 break;
-            case 6:
+            case 7:
                 mQueryCastValue.add("287");
                 break;
-            case 7:
+            case 8:
                 mQueryCastValue.add("1461");
+                break;
+            case 0:
                 break;
             default:
                 Log.e("Err spinnerActorHelp", "not able to select a case");

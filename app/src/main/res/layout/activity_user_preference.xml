@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.movienight.UserPreference">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,7 +13,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.android.movienight.UserPreference">
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,7 +26,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
 
         <CheckBox
             android:id="@+id/action"
@@ -39,6 +45,13 @@
             android:text="Adventure"
             android:onClick="checkboxes"/>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
         <CheckBox
             android:onClick="checkboxes"
             android:id="@+id/animation"
@@ -46,12 +59,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Animation" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
         <CheckBox
             android:onClick="checkboxes"
@@ -60,6 +67,38 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Comedy" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <CheckBox
+            android:onClick="checkboxes"
+            android:id="@+id/romance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Romance" />
+
+        <CheckBox
+            android:onClick="checkboxes"
+            android:id="@+id/thriller"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Thriller" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
 
         <CheckBox
             android:onClick="checkboxes"
@@ -83,23 +122,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:orientation="horizontal">
-
-        <CheckBox
-            android:onClick="checkboxes"
-            android:id="@+id/romance"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Romance" />
-
-        <CheckBox
-            android:onClick="checkboxes"
-            android:id="@+id/thriller"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Thriller" />
-
         <CheckBox
             android:onClick="checkboxes"
             android:id="@+id/sci_fi"
@@ -107,6 +129,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Sci-Fi" />
+        <CheckBox
+            android:onClick="checkboxes"
+            android:id="@+id/documentary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Documentary" />
     </LinearLayout>
 
 
@@ -123,7 +152,8 @@
             android:layout_gravity="left"
             android:text="Actor"
             android:textColor="@color/colorAccent"
-            android:textSize="21sp" />
+            android:textSize="21sp"
+            android:layout_marginBottom="8dp"/>
 
         <Spinner
             android:id="@+id/actor_Spinner"
@@ -144,7 +174,8 @@
             android:layout_gravity="left"
             android:text="Actress"
             android:textColor="@color/colorAccent"
-            android:textSize="21sp" />
+            android:textSize="21sp"
+            android:layout_marginBottom="8dp" />
 
         <Spinner
             android:id="@+id/actress_Spinner"
@@ -163,3 +194,4 @@
         android:textColor="#ffffff"
         android:onClick="findMovies"/>
 </LinearLayout>
+</ScrollView>

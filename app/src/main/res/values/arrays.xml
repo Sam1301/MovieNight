@@ -13,6 +13,7 @@
     </string-array>
 
     <string-array name="actors_array">
+        <item>None</item>
         <item>Robert Downey Jr.</item>
         <item>Chris Evans</item>
         <item>Ben Affleck</item>
@@ -23,6 +24,7 @@
         <item>George Clooney</item>
     </string-array>
     <string-array name="actresses_array">
+        <item>None</item>
         <item>Scarlett Johansson</item>
         <item>Monica Bellucci</item>
         <item>Jennifer Lawrence</item>
