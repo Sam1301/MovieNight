@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private String mMoviesJsonString;
     private String mVideosJsonString;
     private String mYoutubeUrl;
+
+    private String[] mMoviesID = new String[21];
+
     private ImageAdapter imageAdapter;
     public static final String mMovieImageKey = "image";
     public static final String mMovieTitleKey = "title";
@@ -232,24 +235,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String getMovieID(int position) throws JSONException {
-        // These are the names of the JSON objects that need to be extracted.
-        if (mMoviesJsonString != null) {
-
-
-            final String TMD_LIST = "results";
-            final String TMD_ID = "id";
-
-            JSONObject moviesJson = new JSONObject(mMoviesJsonString);
-            JSONArray results = moviesJson.getJSONArray(TMD_LIST);
-
-            JSONObject movie = results.getJSONObject(position);
-            String ID = movie.getString(TMD_ID);
-            return ID;
-        } else {
-            Log.e(LOG_TAG, "Error, look in getMoviesID");
-            return null;
-        }
+    private String getMovieID(int position) {
+        return mMoviesID[position];
     }
 
 
@@ -360,6 +347,17 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             try {
                 setMoviesImage(mMoviesJsonString);
+
+
+                final String TMD_LIST = "results";
+                final String TMD_ID = "id";
+
+                JSONObject moviesJson = new JSONObject(mMoviesJsonString);
+                JSONArray results = moviesJson.getJSONArray(TMD_LIST);
+                for (int position = 0 ; position < results.length() ; ++position) {
+                    JSONObject movie = results.getJSONObject(position);
+                    mMoviesID[position] = movie.getString(TMD_ID);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
                 Log.e(LOG_TAG, "unable to call setMoviesImage");
