@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/gridview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFDE7"
     android:numColumns="auto_fit"
-    android:horizontalSpacing="0dp"
+    android:verticalSpacing="8dp"
 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
