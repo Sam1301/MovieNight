@@ -35,12 +35,15 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private String mMoviesJsonString;
+    private String mVideosJsonString;
+    private String mYoutubeUrl;
     private ImageAdapter imageAdapter;
     public static final String mMovieImageKey = "image";
     public static final String mMovieTitleKey = "title";
     public static final String mMovieOverviewKey = "overview";
     public static final String mMovieVoteCountKey = "vote count";
     public static final String mMovieReleaseDateKey = "release date";
+    public static final String mMovieTrailerUrlKey = "youtube trailer";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +60,15 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 String movieDetails = null;
+
                 try {
+                    getMovieTrailerUrl(position);
                     intent.putExtra(mMovieImageKey, getMovieImage(position));
                     intent.putExtra(mMovieTitleKey, getMovieTitle(position));
                     intent.putExtra(mMovieOverviewKey, getMovieOverview(position));
                     intent.putExtra(mMovieVoteCountKey, getMovieVoteCount(position));
                     intent.putExtra(mMovieReleaseDateKey, getMovieReleaseDate(position));
+                    intent.putExtra(mMovieTrailerUrlKey, mYoutubeUrl);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -79,19 +85,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Log.i(LOG_TAG, "onCreate()");
-    }
 
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(LOG_TAG, "onPause()");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(LOG_TAG, "onStop()");
     }
 
     @Override
@@ -152,14 +146,14 @@ public class MainActivity extends AppCompatActivity {
             String imageUrl = baseUrl + movie.getString(TMD_IMAGE);
             return imageUrl;
 
+        }else {
+            return null;
         }
-        return null;
     }
 
     private double getMovieVoteCount(int position) throws JSONException {
         // These are the names of the JSON objects that need to be extracted.
         if (mMoviesJsonString != null) {
-
 
             final String TMD_LIST = "results";
             final String TMD_VOTE = "vote_average";
@@ -171,8 +165,9 @@ public class MainActivity extends AppCompatActivity {
             double formattedVote = Math.round(movie.getDouble(TMD_VOTE) * 10) / 10.0;
             return formattedVote;
 
+        }else {
+            return 0;
         }
-        return 0;
     }
 
     private String getMovieTitle(int position) throws JSONException {
@@ -190,8 +185,9 @@ public class MainActivity extends AppCompatActivity {
             String title = movie.getString(TMD_TITLE);
             return title;
 
+        }else {
+            return null;
         }
-        return null;
     }
 
     private String getMovieOverview(int position) throws JSONException {
@@ -209,8 +205,9 @@ public class MainActivity extends AppCompatActivity {
             String overview = movie.getString(TMD_OVERVIEW);
             return overview;
 
+        }else {
+            return null;
         }
-        return null;
     }
 
     private String getMovieReleaseDate(int position) throws JSONException {
@@ -230,8 +227,45 @@ public class MainActivity extends AppCompatActivity {
                 return releaseDate.substring(0, 4);
             else
                 return null;
+        }else {
+            return null;
         }
-        return null;
+    }
+
+    private String getMovieID(int position) throws JSONException {
+        // These are the names of the JSON objects that need to be extracted.
+        if (mMoviesJsonString != null) {
+
+
+            final String TMD_LIST = "results";
+            final String TMD_ID = "id";
+
+            JSONObject moviesJson = new JSONObject(mMoviesJsonString);
+            JSONArray results = moviesJson.getJSONArray(TMD_LIST);
+
+            JSONObject movie = results.getJSONObject(position);
+            String ID = movie.getString(TMD_ID);
+            return ID;
+        } else {
+            Log.e(LOG_TAG, "Error, look in getMoviesID");
+            return null;
+        }
+    }
+
+
+    private void getMovieTrailerUrl(int position) throws JSONException {
+
+        // These are the names of the JSON objects that need to be extracted.
+
+        String movieID = getMovieID(position);
+        Log.e(LOG_TAG, "movieID : " + movieID);
+        updateTrailers(movieID);
+
+    }
+
+    private void updateTrailers(String movieID) {
+        new FetchVideosTask().execute(movieID);
+
     }
 
     //Fetching movies data off the main thread using asynctask
@@ -351,6 +385,127 @@ public class MainActivity extends AppCompatActivity {
                 }
                 imageAdapter.setThumbUrls(imageUrls);
 
+            }
+        }
+    }
+    //Fetching trailers data off the main thread using asynctask
+
+    public class FetchVideosTask extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... params) {
+            // If there's no sort option, there's nothing to look up.  Verify size of params.
+            if (params.length == 0) {
+                return null;
+            }
+
+            // These two need to be declared outside the try/catch
+            // so that they can be closed in the finally block.
+            HttpURLConnection urlConnection = null;
+            BufferedReader reader = null;
+
+            // Will contain the raw JSON response as a string.
+            mVideosJsonString = null;
+
+
+            try {
+                // Construct the URL for the OpenWeatherMap query
+                // Possible parameters are avaiable at OWM's forecast API page, at
+                // http://openweathermap.org/API#forecast
+                Uri.Builder builder = new Uri.Builder();
+                builder.scheme("http")
+                        .authority("api.themoviedb.org")
+                        .appendPath("3")
+                        .appendPath("movie")
+                        .appendPath(params[0])
+                        .appendPath("videos");
+                final String VIDEOS_BASE_URL = builder.build().toString();
+                final String APPID_PARAM = "api_key";
+
+                Uri builtUri = Uri.parse(VIDEOS_BASE_URL).buildUpon()
+                        .appendQueryParameter(APPID_PARAM, BuildConfig.THE_MOVIE_DB_API_KEY)
+                        .build();
+
+                URL url = new URL(builtUri.toString());
+
+                Log.e(LOG_TAG, "Built Videos URI " + builtUri.toString());
+
+                // Create the request to TheMoviesDB, and open the connection
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.connect();
+
+                // Read the input stream into a String
+                InputStream inputStream = urlConnection.getInputStream();
+                StringBuffer buffer = new StringBuffer();
+                if (inputStream == null) {
+                    // Nothing to do.
+                    return null;
+                }
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    // Since it's JSON, adding a newline isn't necessary (it won't affect parsing)
+                    // But it does make debugging a *lot* easier if you print out the completed
+                    // buffer for debugging.
+                    buffer.append(line + "\n");
+                }
+
+                if (buffer.length() == 0) {
+                    // Stream was empty.  No point in parsing.
+                    return null;
+                }
+                mVideosJsonString = buffer.toString();
+
+                Log.e(LOG_TAG, "Trailers string: " + mVideosJsonString);
+            } catch (IOException e) {
+                Log.e(LOG_TAG, "Error ", e);
+                // If the code didn't successfully get the weather data, there's no point in attemping
+                // to parse it.
+                return null;
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (final IOException e) {
+                        Log.e(LOG_TAG, "Error closing stream", e);
+                    }
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            final String TMD_TRAILERS_LIST = "results";
+            final String TMD_YOUTUBE_KEY = "key";
+
+
+            try {
+                JSONObject moviesJson;
+                moviesJson = new JSONObject(mVideosJsonString);
+
+                JSONArray results = moviesJson.getJSONArray(TMD_TRAILERS_LIST);
+
+                JSONObject movie = results.getJSONObject(0);
+                String key = movie.getString(TMD_YOUTUBE_KEY);
+
+                Uri.Builder builder = new Uri.Builder();
+                builder.scheme("https")
+                        .authority("www.youtube.com")
+                        .appendPath("watch")
+                        .appendQueryParameter("v", key);
+                mYoutubeUrl = builder.build().toString();
+                Log.e(LOG_TAG, mYoutubeUrl + "");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
     }

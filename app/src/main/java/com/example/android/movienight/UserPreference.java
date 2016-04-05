@@ -33,11 +33,14 @@ public class UserPreference extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+    }
+
+    public void findMovies(View view) {
         startActivity(new Intent(this, MainActivity.class));
     }
 
-    public void checkboxes(View view){
-        switch(view.getId()){
+    public void checkboxes(View view) {
+        switch (view.getId()) {
             case R.id.action:
                 break;
             case R.id.adventure:
@@ -56,7 +59,8 @@ public class UserPreference extends AppCompatActivity {
                 break;
             case R.id.mystery:
                 break;
-            default:finish();
+            default:
+                finish();
                 Log.e("in User preference", "Incorrect checkbox chosen");
                 break;
         }

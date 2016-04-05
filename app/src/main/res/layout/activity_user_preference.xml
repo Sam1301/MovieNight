@@ -160,5 +160,6 @@
         android:background="@color/colorPrimary"
         android:padding="8dp"
         android:text="FIND MOVIES"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:onClick="findMovies"/>
 </LinearLayout>
