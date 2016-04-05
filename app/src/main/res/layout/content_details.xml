@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
-                android:src="@drawable/deadpool" />
+                 />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -59,7 +59,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="2016"
                     android:textSize="16sp"/>
 
                 <RatingBar
@@ -77,14 +76,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="8.1/10"
                     android:textSize="16sp"/>
             </LinearLayout>
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OVERVIEW"
+
             android:textSize="16sp"
             android:layout_marginBottom="8dp"/>
 
@@ -107,7 +105,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Watch Trailer"
                 android:layout_gravity="center_vertical"
                 android:textSize="21sp"/>
     </LinearLayout>
