@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
     private void updateMovies() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String preferredSortOrder = sharedPref.getString(getString(R.string.sortByPreferenceKey), getString(R.string.sortByPreferenceDefaultValue));
-        new FetchMoviesTask().execute(preferredSortOrder);
+        String url = getIntent().getStringExtra(mRequestUrlKey);
+        new FetchMoviesTask().execute(preferredSortOrder, url);
 
     }
 
@@ -280,8 +281,7 @@ public class MainActivity extends AppCompatActivity {
                 // Construct the URL for the OpenWeatherMap query
                 // Possible parameters are avaiable at OWM's forecast API page, at
                 // http://openweathermap.org/API#forecast
-                final String MOVIES_BASE_URL =
-                        "http://api.themoviedb.org/3/discover/movie?";
+                final String MOVIES_BASE_URL = params[1];
                 final String SORT_BY_PARAM = "sort_by";
                 final String APPID_PARAM = "api_key";
 
