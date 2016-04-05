@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,12 +40,16 @@ public class DetailsActivity extends AppCompatActivity {
 
         t1 = (TextView) findViewById(R.id.overview);
         t1.setText(intent.getStringExtra(mMovieOverviewKey));
-
+//rating is out of ten
+        float rating = intent.getFloatExtra(mMovieVoteCountKey, 0.0f);
         t1 = (TextView) findViewById(R.id.rating);
-        t1.setText(intent.getDoubleExtra(mMovieVoteCountKey, 0.0) + "/10");
+        t1.setText(rating/2 + "/5");
 
         t1 = (TextView) findViewById(R.id.release_date);
         t1.setText(intent.getStringExtra(mMovieReleaseDateKey));
+
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.rating_bar);
+        ratingBar.setRating(rating / 2);
 
         String youtubeLink = intent.getStringExtra(mMovieTrailerUrlKey);
 

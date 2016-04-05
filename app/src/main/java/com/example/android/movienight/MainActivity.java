@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private double getMovieVoteCount(int position) throws JSONException {
+    private float getMovieVoteCount(int position) throws JSONException {
         // These are the names of the JSON objects that need to be extracted.
         if (mMoviesJsonString != null) {
 
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             JSONArray results = moviesJson.getJSONArray(TMD_LIST);
 
             JSONObject movie = results.getJSONObject(position);
-            double formattedVote = Math.round(movie.getDouble(TMD_VOTE) * 10) / 10.0;
+            float formattedVote = Math.round(movie.getDouble(TMD_VOTE) * 10) / 10.0f;
             return formattedVote;
 
         }else {
