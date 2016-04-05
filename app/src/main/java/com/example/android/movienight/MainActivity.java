@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String mMovieVoteCountKey = "vote count";
     public static final String mMovieReleaseDateKey = "release date";
     public static final String mMovieTrailerUrlKey = "youtube trailer";
+    public String mRequestUrlKey = "request url";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

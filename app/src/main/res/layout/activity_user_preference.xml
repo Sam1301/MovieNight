@@ -127,7 +127,7 @@
 
         <Spinner
             android:id="@+id/actor_Spinner"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"></Spinner>
     </LinearLayout>
 
@@ -148,7 +148,7 @@
 
         <Spinner
             android:id="@+id/actress_Spinner"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"></Spinner>
     </LinearLayout>
 
